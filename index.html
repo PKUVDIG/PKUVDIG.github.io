@@ -10,7 +10,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
- 
+
   gtag('config', 'G-PY99WRQRT8');
 </script><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SAMPLING: Scene-adaptive Hierarchical Multiplane Images Representation for Novel View Synthesis from a Single Image</title>
@@ -39,7 +39,10 @@
 </div>
 
 <div class="container">
-<div class="section"><img src="web/img/teaser.png" style="margin-bottom:2em;" width="100%" /> <!-- Add vertical space -->
+<div class="section"><img src="web/teaser8.jpg" style="margin-bottom:2em;" width="100%" /> <!-- Add vertical space -->
+<p><b>Novel view synthesis result comparisons.</b> Given a single image captured in an outdoor scene, our method
+synthesizes novel views with fewer visual artifacts, geometric deformities, and blurs. Notably, our method models favorable
+intricate details, such as tiny objects, symbols, and traffic signs, resulting in more photo-realistic views.
 <h3>Abstract</h3>
 
 <p>Recent novel view synthesis methods obtain promising results for relatively small scenes, e.g., indoor environments and scenes with a few objects, but tend to fail for unbounded outdoor scenes with a single image as input. In this paper, we introduce SAMPLING, a Scene-adaptive Hierarchical Multiplane Images Representation for Novel View Synthesis from a Single Image based on improved multiplane images (MPI). Observing that depth distribution varies significantly for unbounded outdoor scenes, we employ an adaptive-bins strategy for MPI to arrange planes in accordance with each scene image. To represent intricate geometry and multi-scale details, we further introduce a hierarchical refinement branch, which results in high-quality synthesized novel views. Our method demonstrates considerable performance gains in synthesizing large-scale unbounded outdoor scenes using a single image on the KITTI dataset and generalizes well to the unseen Tanks and Temples dataset. The code and models will be made public.</p>
@@ -49,73 +52,44 @@
 
 <div class="container">
 <div class="section">
-<h3>Material selection evaluation on real data</h3>
-<img src="web/img/qualitative_results.png" width="100%" />
-<p>An array of results on the real image dataset for our method and the baselines and ablations are presented on this webpage:</p>
+<h3>Qualitative comparison of novel view synthesis on the KITTI dataset.</h3>
+<img src="web/compare.jpg" width="100%" />
+<p> Visualization results show our method generates better details compared to other single-view NVS methods.</p>
 
-<div class="row">
-<div class="col-sm-6" style="text-align: center;"><a aria-pressed="true" class="btn btn-primary btn-lg active" href="./web/results/results.html" role="button">VIEW RESULTS BY CLICKING HERE</a></div>
-
-<div class="col-sm-6" style="text-align: center;"><a aria-pressed="true" class="btn btn-primary btn-lg active" href="./web/results/comparisons.html" role="button">VIEW COMPARISON RESULTS BY CLICKING HERE</a></div>
-</div>
 
 <hr />
 <div class="section">
-<h3>Material selection in videos</h3>
+<h3>Qualitative comparison of disparity map and novel view synthesis on the KITTI dataset.</h3>
+<img src="web/depth_comp3.png" width="100%" />
+<p>(a) Disparity maps in previous work exhibit structural biases and missing objects, leading to unpleasant artifacts and distortions in the output. (b) The comparative disparity maps show that our method is capable of better recovering the spatial structure of complex scenes and intricate object boundaries. (c) Our method consistently delivers higher-quality and flawlessly disparity maps and outputs, even in challenging regions.</p>
 
-<p>Given a  on the first frame of, our method can be applied to select the material at the query point in each frame. Note how the selections are robust to lighting variations including specularity and shadows.</p>
-
-<div class="row">
-<div class="col-sm-3" style="text-align: center;">
-<h6>First frame with query in red</h6>
-</div>
-
-<div class="col-sm-3" style="text-align: center;">
-<h6>Input video</h6>
-</div>
-
-<div class="col-sm-3" style="text-align: center;">
-<h6>Predicted material selection</h6>
-</div>
-
-<div class="col-sm-3" style="text-align: center;">
-<h6>Output scores</h6>
-</div>
-</div>
-
-<video autoplay="true" class="video" loop="true" muted="" playsinline=""><source src="web/videos/video_1.mp4" /></video>
-
-<video autoplay="true" class="video" loop="true" muted="" playsinline=""><source src="web/videos/video_2.mp4" /></video>
-
-<video autoplay="true" class="video" loop="true" muted="" playsinline="" width="100%"><source src="web/videos/video_3.mp4" /></video>
-
-<video autoplay="true" class="video" loop="true" muted="" playsinline="" width="100%"><source src="web/videos/video_4.mp4" /></video>
-
-<hr /></div>
-
-<div class="section">
-<h3>Demo video: Enabling multiple material selection</h3>
-
-<p>To empower artists, in an interactive demo, we allow users to select multiple positive (first video) and negative (second video) query points. The resulting score map for positive query points are combined by taking the maximum of the individually predicted similarity scores for each pixel, and thresholded by user defined value in [0, 1]. The predicted scores corresponding to negative samples are combined by computing a per-pixel maximum across all predicted scores of negative regions, and are then thresholded by the user using a separate threshold value. The intersection of the resulting mask with the mask computed using positive query points is removed from the final selection.</p>
-
-<h4>Multiple selection</h4>
-
-<video autoplay="true" class="video" loop="true" muted="" width="100%"><source src="web/videos/positive_trim_crop.mp4" /></video>
 
 <hr />
-<h4>Negative selection</h4>
 
-<video autoplay="true" class="video" loop="true" muted="" width="100%"><source src="web/videos/negative_trim_crop.mp4" /></video>
-</div>
+
+<div class="section">
+	
+<h3>The qualitative results of our method generalize to unseen dataset (T&T).</h3>
+
+
+<img src="web/indoor4.png" width="100%" />
+<p>The symbol * denotes the model is trained on KITTI and evaluated on T&T.</p>
+
+<div class="section">
+<h3>Qualitative results on KITTI of outdoor scenes.</h3>
+<img src="web/outdoor-sup2.png" width="100%" />	
+
+<p>Each compared group <b>C</b> consists of two synthesized views of outdoor scenes in the KITTI dataset, with the novel views synthesized by MINE <b>(Top row)</b> and the images generated by our method <b>(Bottom row)</b> at the same viewpoint. We highlight the challenging areas and hard cases in these outdoor scenes.</p>
+
 
 <hr />
 <div class="section">
-<h3>Image editing</h3>
-
-<p>Outputs from our method can be used as input for material selection based image editing using Photoshop, Image-Based Material Editing (Khan et al. [2006]), and Stable Diffusion Inpainting [Rombach et al . 2021].</p>
+<h3>Qualitative results on T&T of indoor scenes.</h3>
+<img src="web/indoor-sup.png" width="100%" />	
+<p>Each compared group <b>C</b> consists of two synthesized views of indoor scenes in the T&T dataset, with the novel views synthesized by MINE <b>(Top row)</b> and the images generated by our method <b>(Bottom row)</b> at the same viewpoint. Notably, both methods are trained on the KITTI dataset and are not fine-tuned on the indoor dataset.</p>
 <img src="web/img/editing_horizontal.png" width="100%" /></div>
 
-<hr />
+<!-- <hr />
 <div class="section">
 <h3>Results on grayscale images</h3>
 
@@ -158,7 +132,7 @@
 
 <p>We then proceed to select similar materials based on a query pixel on each extreme case. As we can see our method selects materials that are close to the query but not exactly similar and discriminates well when the mix of materials is visually far from the query.</p>
 <img src="web/img/brdf_blend.png" width="100%" />
-<hr /></div>
+<hr /></div> -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
